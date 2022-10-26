@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-E4F1PLHNPG"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-E4F1PLHNPG');
+	</script>
+	<meta charset="utf-8">
+	<meta name="author" content="Takuhiro Kaneko">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<title>LightVoc</title>
+</head>
+
+<style type="text/css">
+	h3 {
+		padding-top: 20px;
+	}
+
+	h4 {
+		padding-top: 20px;
+	}
+
+	table {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	th {
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	td {
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	p {
+		text-align: justify;
+		text-justify: inter-word;
+	}
+
+	ol.reference li {
+		list-style-type: none;
+		counter-increment: cnt;
+		text-indent: -1.6em;
+	}
+
+	ol.reference li::before {
+		display: marker;
+		content: "[" counter(cnt) "]";
+	}
+
+	#pink {
+		color: #DC1D79;
+	}
+
+	audio {
+		width: 100%;
+		height: 24px;
+		vertical-align: middle;
+	}
+
+	.left {
+		text-align: left;
+	}
+
+	.thumbnailshadow {
+		filter: drop-shadow(5px 5px 5px #AAAAAA);
+	}
+</style>
+
+<body>
+	<header>
+		<div class="text-center p-4">
+			<h1 class="display-1">LIGHTVOC</h1>
+			<div class="lead">
+				AN UPSAMPLING-FREE GAN VOCODER BASED ON CONFORMER AND INVERSE SHORT-TIME FOURIER TRANSFORM
+			</div>
+			<p>
+				<ul class="list-inline">
+					<li class="list-inline-item"><u>Dinh Son Dang</u></li>
+					<li class="list-inline-item"><u>Tung Lam Nguyen</u></li>
+					<li class="list-inline-item"><u>Bao Thang Ta</u></li>
+					<li class="list-inline-item"><u>Tien Thanh Nguyen</u></li>
+					<li class="list-inline-item"><u>Thi Ngoc Anh Nguyen</u></li>
+					<li class="list-inline-item"><u>Dang Linh Le</u></li>
+					<li class="list-inline-item"><u>Nhat Minh Le</u></li>
+					<li class="list-inline-item"><u>Van Hai Do</u></li>
+					<li>Viettel Cyberspace Center, Viettel Group, Vietnam</li>
+				</ul>
+			</p>
+		</div>
+	</header>
+
+	<main>
+		<div class="container">
+
+			<div class="row" id="results">
+				<div class="col-md-12">
+					<table>
+						<em> <b>Transcript 01: </b> And who are therefore lodged apart from all other districts of the jail. End quote. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ002-0075.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ002-0075.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ002-0075.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ002-0075.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ002-0075.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ002-0075.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 02: </b> And none are more commendable than that which deprecates the excessive ornamentation of the external parts of the edifice. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ005-0065.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ005-0065.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ005-0065.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ005-0065.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ005-0065.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ005-0065.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 03: </b> The inspectors very properly desired to call attention to the inevitable tendency in this mode of dealing with the most awful sanctions of the law. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ008-0286.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ008-0286.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ008-0286.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ008-0286.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ008-0286.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ008-0286.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 04: </b> On the one inveigling silly enthusiasts to join in the plot, and denouncing them on the other. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ010-0116.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ010-0116.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ010-0116.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ010-0116.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ010-0116.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ010-0116.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 05: </b> After which he devoted himself to pistol practice in shooting-galleries, sometimes in Leicester Square. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ010-0168.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ010-0168.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ010-0168.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ010-0168.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ010-0168.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ010-0168.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 06: </b> Raised the alarm, and suspicion fell upon the three murderers, who were arrested. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ012-0185.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ012-0185.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ012-0185.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ012-0185.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ012-0185.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ012-0185.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 07: </b> Numbers of humane and thoughtful persons had long been convinced of this. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ016-0304.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ016-0304.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ016-0304.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ016-0304.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ016-0304.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ016-0304.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 08: </b> The facts of the murder and its object, robbery, were thus conclusively proved. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ018-0021.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ018-0021.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ018-0021.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ018-0021.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ018-0021.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ018-0021.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 09: </b> One quart of Graham flour, one cup of white flour. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ020-0025.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ020-0025.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ020-0025.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ020-0025.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ020-0025.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ020-0025.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 10: </b> When it is light for the second time flour your board, rubbing in the flour and blowing lightly away what does not adhere to the surface. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ020-0049.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ020-0049.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ020-0049.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ020-0049.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ020-0049.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ020-0049.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 11: </b> A new and younger judge shall be added to the court automatically. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ024-0072.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ024-0072.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ024-0072.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ024-0072.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ024-0072.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ024-0072.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 12: </b> The fact of the animal and vegetable kingdoms being related to one another like two trees united at the roots may be accounted for by the hypothesis that. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ026-0038.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ026-0038.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ026-0038.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ026-0038.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ026-0038.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ026-0038.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 13: </b> Babylon, even in the days of Nebuchadnezzar, was an old, old city. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ028-0032.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ028-0032.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ028-0032.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ028-0032.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ028-0032.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ028-0032.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 14: </b> Upon the little mound Jumjuma farther on, an Arab village has long stood. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ028-0447.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ028-0447.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ028-0447.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ028-0447.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ028-0447.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ028-0447.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 15: </b> Because the stairway itself is enclosed, neither Baker nor Truly could see anything on the second-floor hallway until they reached the landing at the top of the stairs. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ035-0035.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ035-0035.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ035-0035.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ035-0035.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ035-0035.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ035-0035.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 16: </b> Oswald's jacket was found along the path of flight taken by the gunman as he fled from the scene of the killing. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ037-0269.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ037-0269.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ037-0269.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ037-0269.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ037-0269.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ037-0269.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+					
+					<table>
+						<em> <b>Transcript 17: </b> He also recommended that Mrs. Oswald seek, quote, psychotherapeutic guidance through contact with a family agency, end quote. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ040-0163.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ040-0163.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ040-0163.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ040-0163.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ040-0163.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ040-0163.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 18: </b> The items which Oswald left at home when he made his attack on Walker suggest a strong concern for his place in history. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ043-0175.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ043-0175.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ043-0175.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ043-0175.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ043-0175.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ043-0175.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 19: </b> Answer: He tried to talk to me but I would not answer him, and he was very upset. Question: Were you upset with him? </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ045-0156.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ045-0156.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ045-0156.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ045-0156.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ045-0156.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ045-0156.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+
+					<table>
+						<em> <b>Transcript 20: </b> The Commission regards such impromptu stops as presenting an unnecessary danger. </em>
+						<thead>
+							<tr>
+								<th>Ground Truth</th>
+								<th>Multi-band MelGAN</th>
+								<th>Parallel WaveGAN</th>
+								<th>HiFi-GAN V1</th>
+								<th>HiFi-GAN V2</th>
+								<th><span id="pink">LightVoc</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/ground-truth/LJ049-0014.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/multiband-melgan/LJ049-0014.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/parallel-wavegan/LJ049-0014.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v1/LJ049-0014.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/hifigan-v2/LJ049-0014.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+								<td>
+									<audio controls>
+										<source src="https://audio-testset.s3.amazonaws.com/tts/lightvoc/LJ049-0014.wav" type="audio/wav" />
+										Your browser does not support the audio element.
+									</audio>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr></hr><br>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+
+</html>
